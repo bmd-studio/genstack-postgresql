@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  postgresql:
+    build:
+      context: ./
+      args:
+        - DOCKER_IMAGE
+    restart: ${DOCKER_RESTART_POLICY}
+    init: true   
+    env_file:
+      - ${DOCKER_GENERATED_ENV_FILE:-./env/defaults}    
+    environment:
+      - POSTGRES_USER=${POSTGRES_SUPER_USER_ROLE_NAME}
+      - POSTGRES_PASSWORD=${POSTGRES_SUPER_USER_SECRET}
+      - POSTGRES_DB=${POSTGRES_DEFAULT_DATABASE_NAME}
+      - PGDATA=${POSTGRES_PGDATA_PATH}
+    volumes:
+      - data:${POSTGRES_PGDATA_PATH}:z
+    networks:
+      - ${DOCKER_BACKEND_NETWORK_NAME}
+    logging:
+      driver: ${DOCKER_LOGGING_DRIVER}
+      options:
+        max-file: ${DOCKER_LOGGING_MAX_FILE}
+        max-size: ${DOCKER_LOGGING_MAX_SIZE}
+
+networks:
+  backend:
+    name: ${APP_PREFIX}_${DOCKER_BACKEND_NETWORK_NAME}
+
+volumes:
+  data:
+    name: ${POSTGRES_VOLUME_NAME}
+    driver: local
