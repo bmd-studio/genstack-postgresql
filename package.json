@@ -1,10 +1,5 @@
 {
-  "name": "@bmd-studio/genstack-container-postgresql",
-  "version": "1.0.0",
-  "description": "Off-the-shelf PostgreSQL container.",
-  "main": "index.js",
-  "author": "BMD Studio",
-  "license": "MIT",
+  "private": true,
   "scripts": {
     "dc": "docker-compose --env-file=./env/defaults -f docker-compose.yml --compatibility",
     "dc:dev": "yarn dc -f docker-compose.development.yml"
