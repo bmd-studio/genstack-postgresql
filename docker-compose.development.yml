@@ -2,5 +2,3 @@ version: '3.7'
 
 services:
   postgresql:
-    ports:
-      - ${DOCKER_POSTGRES_PORT}

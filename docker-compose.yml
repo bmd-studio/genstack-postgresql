@@ -19,6 +19,8 @@ services:
       - data:${POSTGRES_PGDATA_PATH}:z
     networks:
       - ${DOCKER_BACKEND_NETWORK_NAME}
+    ports:
+      - ${DOCKER_POSTGRES_MAPPED_PORT}:${DOCKER_POSTGRES_PORT}
     logging:
       driver: ${DOCKER_LOGGING_DRIVER}
       options:
