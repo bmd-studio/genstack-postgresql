@@ -18,7 +18,9 @@ services:
     volumes:
       - data:${POSTGRES_PGDATA_PATH}:z
     networks:
-      - backend
+      backend:
+        aliases: 
+          - ${SERVICE_NAME}
     ports:
       - ${DOCKER_POSTGRES_MAPPED_PORT}:${DOCKER_POSTGRES_PORT}
     logging:
