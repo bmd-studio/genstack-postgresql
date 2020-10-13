@@ -7,7 +7,9 @@ POSTGRES_VOLUME_NAME=pg_data
 POSTGRES_SUPER_USER_ROLE_NAME=postgres
 POSTGRES_SUPER_USER_SECRET=password
 POSTGRES_DEFAULT_DATABASE_NAME=postgres
+
 POSTGRES_PGDATA_PATH=/var/lib/postgresql/data/pgdata
+POSTGRES_VOLUME_NAME=postgres_data_v1
 
 # variables to run standalone
 APP_PREFIX=postgresql
