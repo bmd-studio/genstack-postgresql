@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
   postgresql:
+    container_name: ${COMPOSE_PROJECT_NAME}_${SERVICE_NAME}
     build:
       context: ./
       args:
@@ -18,7 +19,9 @@ services:
     volumes:
       - data:${POSTGRES_PGDATA_PATH}:z
     networks:
-      - backend
+      backend:
+        aliases: 
+          - ${SERVICE_NAME}
     ports:
       - ${DOCKER_POSTGRES_MAPPED_PORT}:${DOCKER_POSTGRES_PORT}
     logging:
