@@ -1,5 +1,5 @@
-ARG DOCKER_IMAGE
-FROM $DOCKER_IMAGE
+ARG DOCKER_BASE_IMAGE
+FROM $DOCKER_BASE_IMAGE
 
 # Request a specific commit to make sure things keep working
 ENV WAL2JSON_COMMIT_ID=2ad272d2bb163407c1acad1dc279f2af6edb14a5

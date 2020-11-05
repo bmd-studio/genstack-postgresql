@@ -1,3 +1,7 @@
+.git
+.idea
+.DS_Store
+
 # Logs
 logs
 *.log
@@ -34,11 +38,8 @@ bower_components
 build/Release
 
 # Dependency directories
-node_modules/
-jspm_packages/
-
-# TypeScript v1 declaration files
-typings/
+**/node_modules/
+**/jspm_packages/
 
 # Optional npm cache directory
 .npm
@@ -56,8 +57,11 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
+env.*
 .env
 .env.*
+/env/*
+!/env/*.example
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -73,4 +77,16 @@ typings/
 
 # Serverless directories
 .serverless
-boilerplate/env/local
+
+# Error reports
+report.*
+
+# build files
+build/
+_build/
+dist/
+_dist/
+
+# Stryker
+.stryker-tmp
+reports
