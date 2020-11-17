@@ -3,7 +3,7 @@ version: '3.7'
 services:
   postgresql:
     container_name: ${COMPOSE_PROJECT_NAME}_${SERVICE_NAME}_${GS_ENV}
-    image: ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}-${GS_ENV}
+    image: ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}-${GS_ENV}
     build:
       context: ./
       args:
