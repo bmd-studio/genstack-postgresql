@@ -16,7 +16,7 @@ POSTGRES_PGDATA_PATH=/var/lib/postgresql/data/pgdata
 POSTGRES_VOLUME_NAME=postgres_data_v2
 
 PROXY_ROUTER_ENABLE=true
-PROXY_ROUTER_DOMAIN=localhost
+PROXY_ROUTER_DOMAIN={domain:.+}
 
 DOCKER_BASE_IMAGE=postgres:13.0-alpine
 DOCKER_RESTART_POLICY=unless-stopped
