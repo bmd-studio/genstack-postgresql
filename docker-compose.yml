@@ -34,6 +34,7 @@ services:
 networks:
   backend:
     name: ${APP_PREFIX}_${DOCKER_BACKEND_NETWORK_NAME}
+    external: true
 
 volumes:
   data:
