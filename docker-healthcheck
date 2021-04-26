@@ -1,5 +1,4 @@
 #!/bin/bash
-# SOURCE: 
 set -eo pipefail
 
 host="$(hostname || echo '127.0.0.1')"
