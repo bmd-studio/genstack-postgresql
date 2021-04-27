@@ -2,7 +2,7 @@ ARG DOCKER_BASE_IMAGE
 FROM $DOCKER_BASE_IMAGE
 
 # Request a specific commit to make sure things keep working
-ENV WAL2JSON_COMMIT_ID=2ad272d2bb163407c1acad1dc279f2af6edb14a5
+ENV WAL2JSON_COMMIT_ID=1527dfc56a54d5b7c15b2fb6ec2ab8d7776402ec
 
 # Compile the wal2json plugin from sources and install it
 RUN apk --update add --virtual build-dependencies build-base git openssh clang llvm \
@@ -18,8 +18,11 @@ COPY postgresql.conf /tmp/postgresql/postgresql.conf
 RUN cat /tmp/postgresql/postgresql.conf >> /usr/local/share/postgresql/postgresql.conf.sample
 
 COPY docker-healthcheck /usr/local/bin/
+COPY exec.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-healthcheck
+RUN chmod +x /usr/local/bin/exec.sh
 HEALTHCHECK CMD ["docker-healthcheck"]
 
 # CMD ["postgres"]
-CMD ["postgres", "-c", "config_file=/usr/local/share/postgresql/postgresql.conf.sample"]
+# CMD ["postgres", "-c", "config_file=/usr/local/share/postgresql/postgresql.conf.sample"]
+CMD ["/bin/sh", "exec.sh"]

@@ -1,4 +1,4 @@
-import { setupTestApp, shutdownTestApp, PROJECT_AMOUNT, DEFAULT_PROJECT_POSITION, getPgPool, PROJECT_TABLE_NAME, POSTGRES_PUBLIC_SCHEMA_NAME } from '../setup/app';
+import { setupTestApp, shutdownTestApp, PROJECT_AMOUNT, getPgPool, PROJECT_TABLE_NAME, POSTGRES_PUBLIC_SCHEMA_NAME } from '../setup/app';
 
 describe('querying', () => {
   beforeAll(async () => {
