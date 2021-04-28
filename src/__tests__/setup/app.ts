@@ -10,6 +10,7 @@ const POSTGRES_HOST_NAME = 'localhost';
 const POSTGRES_DATABASE_NAME = 'test';
 const POSTGRES_SUPER_USER_ROLE_NAME = 'postgres';
 const POSTGRES_SUPER_USER_SECRET = 'password';
+const POSTGRES_PGDATA_PATH = '/var/lib/postgresql/data/pgdata';
 export const POSTGRES_PUBLIC_SCHEMA_NAME = 'app_public';
 
 export const PROJECT_AMOUNT = 10000;
@@ -22,7 +23,7 @@ let pgContainer: StartedTestContainer;
 
 const setupTestContainer = async(): Promise<void> => {
   network = await new Network()
-  .start();
+    .start();
 
   pgContainer = await new GenericContainer(POSTGRES_DOCKER_IMAGE)
     .withNetworkMode(network.getName())
@@ -30,6 +31,7 @@ const setupTestContainer = async(): Promise<void> => {
     .withEnv('POSTGRES_USER', POSTGRES_SUPER_USER_ROLE_NAME)
     .withEnv('POSTGRES_PASSWORD', POSTGRES_SUPER_USER_SECRET)
     .withEnv('POSTGRES_DB', POSTGRES_DATABASE_NAME)
+    .withEnv('PGDATA', POSTGRES_PGDATA_PATH)
     .start();
 };
 
@@ -71,7 +73,6 @@ const setupDatabase = async (): Promise<void> => {
     );
     CREATE INDEX position_index ON "${POSTGRES_PUBLIC_SCHEMA_NAME}"."${PROJECT_TABLE_NAME}" (position);
     CREATE INDEX name_index ON "${POSTGRES_PUBLIC_SCHEMA_NAME}"."${PROJECT_TABLE_NAME}" (name);
-
   `);
   const values = join(map(range(0, PROJECT_AMOUNT), () => {
     return `($1, $2)`;

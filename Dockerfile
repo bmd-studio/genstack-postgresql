@@ -17,12 +17,9 @@ RUN apk --update add --virtual build-dependencies build-base git openssh clang l
 COPY postgresql.conf /tmp/postgresql/postgresql.conf
 RUN cat /tmp/postgresql/postgresql.conf >> /usr/local/share/postgresql/postgresql.conf.sample
 
-COPY docker-healthcheck /usr/local/bin/
-COPY exec.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-healthcheck
-RUN chmod +x /usr/local/bin/exec.sh
+WORKDIR /usr/local/bin/
+COPY docker-healthcheck ./
+RUN chmod +x ./docker-healthcheck
 HEALTHCHECK CMD ["docker-healthcheck"]
 
-# CMD ["postgres"]
-# CMD ["postgres", "-c", "config_file=/usr/local/share/postgresql/postgresql.conf.sample"]
-CMD ["/bin/sh", "exec.sh"]
+CMD ["postgres", "-c", "config_file=/usr/local/share/postgresql/postgresql.conf.sample"]
