@@ -1,6 +1,6 @@
 {
   "name": "@bmd-studio/genstack-postgresql",
-  "version": "13.2",
+  "version": "13.2.1",
 	"description": "Postgres extended with WAL2JSON",
   "scripts": {
     "setup": "yarn install",
