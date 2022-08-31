@@ -2,16 +2,16 @@ version: '3.7'
 
 services:
   postgresql:
-    container_name: ${COMPOSE_PROJECT_NAME}_${SERVICE_NAME}_${GS_ENV}
-    image: ${DOCKER_IMAGE_REGISTRY:-}${APP_PREFIX}/${SERVICE_NAME}:${APP_VERSION}-${GS_ENV}
+    container_name: ${COMPOSE_PROJECT_NAME}_${SERVICE_NAME}
+    image: ${DOCKER_IMAGE_REGISTRY:-}${APP_PREFIX}/${SERVICE_NAME}:${APP_VERSION}
     build:
       context: ./
       args:
         - DOCKER_BASE_IMAGE
     restart: ${DOCKER_RESTART_POLICY}
-    init: true   
+    init: true
     env_file:
-      - ${DOCKER_GENERATED_ENV_FILE:-./env/defaults}    
+      - ${DOCKER_GENERATED_ENV_FILE:-./env/defaults}
     environment:
       - POSTGRES_USER=${POSTGRES_SUPER_USER_ROLE_NAME}
       - POSTGRES_PASSWORD=${POSTGRES_SUPER_USER_SECRET}
@@ -21,7 +21,7 @@ services:
       - data:${POSTGRES_PGDATA_PATH}:z
     networks:
       backend:
-        aliases: 
+        aliases:
           - ${SERVICE_NAME}
     ports:
       - ${DOCKER_POSTGRES_MAPPED_PORT}:${DOCKER_POSTGRES_PORT}
